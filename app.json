@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3FA8FF",
+    "navigationBarTitleText": "爱计步小工具",
+    "navigationBarTextStyle": "black"
+  },
+  
+  "sitemapLocation": "sitemap.json"
+}

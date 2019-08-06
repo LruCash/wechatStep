@@ -1,0 +1,34 @@
+<view class="root">
+  <image class='background-image' src='../../image/bg.png' mode="aspectFill"></image>
+  <view class="content">
+
+    <view class="step_view">
+      <image class="step_iv" src="../../image/step_bg.png" mode="widthFix" style="width:600rpx"></image>
+      <text class="wechat_step">1800</text>
+    </view>
+
+    <view class="step_walk">
+      <view class="step_one" style="color:#FFFFFF">同步步数到爱计步</view>
+      <view class="step_two" style="color:#FFFFFF">同步成功后，步数更精准</view>
+    </view>
+
+    <view class="sync_view">
+      <image class="sync_iv" bindtap="login" src='../../image/sync_bt.png' mode="widthFix" style="width:600rpx;"></image>
+
+      <view class="tip_view" style="width:600rpx;">
+        <button class="method_view" bindtap="method_click">
+          <image class="tip_iv" src="../../image/sync_icon.png" mode="widthFix"></image>
+          <text class="tip_tv">同步方法</text>
+        </button>
+
+        <button class="question_view"  open-type="contact">
+          <image class="tip_iv" src="../../image/question_icon.png" mode="widthFix"></image>
+           <text class="tip_tv">联系客服</text>
+        </button>
+      </view>
+    </view>
+
+    <popup id='popup' bind:close="_close"></popup>
+
+  </view>
+</view>
