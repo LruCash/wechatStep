@@ -70,6 +70,17 @@ page {
   justify-content: space-between;
 }
 
+.sync_bt{
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sync_bt::after{
+  border: none;
+}
+
 .method_view {
   display: flex;
   margin-left: 50rpx;

@@ -4,7 +4,7 @@
 
     <view class="step_view">
       <image class="step_iv" src="../../image/step_bg.png" mode="widthFix" style="width:600rpx"></image>
-      <text class="wechat_step">1800</text>
+      <text class="wechat_step">{{step}}</text>
     </view>
 
     <view class="step_walk">
@@ -13,7 +13,9 @@
     </view>
 
     <view class="sync_view">
-      <image class="sync_iv" bindtap="login" src='../../image/sync_bt.png' mode="widthFix" style="width:600rpx;"></image>
+      <button class="sync_bt" open-type="launchApp" app-parameter="{{monthStep}}" binderror="launchAppError">
+        <image class="sync_iv"  src='../../image/sync_bt.png' mode="widthFix" style="width:600rpx;"></image>
+      </button>
 
       <view class="tip_view" style="width:600rpx;">
         <button class="method_view" bindtap="method_click">
@@ -21,14 +23,20 @@
           <text class="tip_tv">同步方法</text>
         </button>
 
-        <button class="question_view"  open-type="contact">
+        <button class="question_view" open-type="contact">
           <image class="tip_iv" src="../../image/question_icon.png" mode="widthFix"></image>
-           <text class="tip_tv">联系客服</text>
+          <text class="tip_tv">联系客服</text>
         </button>
       </view>
     </view>
 
     <popup id='popup' bind:close="_close"></popup>
+
+    <view class="loading_view">
+      <loading hidden="{{hidden}}">
+        同步微信步数中
+      </loading>
+    </view>
 
   </view>
 </view>

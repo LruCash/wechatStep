@@ -15,7 +15,7 @@
 
         <view class="title_tv" style="width:100%">同步微信运动方法</view>
 
-      <view class="tip_tv">1.请在爱计步APP首页点击"同步微信步数"按钮，进入走多多小工具</view>
+      <view class="tip_tv">1.请在爱计步APP首页点击"同步微信步数"按钮，进入爱计步小工具</view>
       <view class="tip_tv">2.请确定已启用微信运动</view>
       <view class="tip_tv tip_three">3.获取微信步数后，点击立即同步，返回爱计步，即可同步完成</view>
     </view>
