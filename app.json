@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/home/home"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#3FA8FF",
+    "navigationBarBackgroundColor": "white",
     "navigationBarTitleText": "爱计步小工具",
     "navigationBarTextStyle": "black"
   },

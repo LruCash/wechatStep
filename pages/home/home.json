@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "popup": "/components/popup/popup",
+    "coinDialog":"/components/coinDialog/coinDialog"
+  }
+}
