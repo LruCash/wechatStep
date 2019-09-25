@@ -1,56 +1,62 @@
-<view class="root_view">
-  <view class="header_view">
+<scroll-view scroll-y style="height: 100%;">
 
-    <view class="circle_view">
-      <image class="circle_iv" src="../../image/circle.png" mode="widthFix" style="width:450rpx"></image>
-      <text class="title_step">微信步数</text>
-      <text class="step_count">{{step}}</text>
-      <image class="read_bt" bindtap="read_step" src="../../image/readStep.png" mode="widthFix" style="width:250rpx"></image>
+  <view class="root_view">
+    <view class="header_view">
+
+      <view class="circle_view">
+        <image class="circle_iv" src="../../image/circle.png" mode="widthFix" style="width:450rpx"></image>
+        <text class="title_step">微信步数</text>
+        <text class="step_count">{{step}}</text>
+        <image class="read_bt" bindtap="read_step" src="../../image/readStep.png" mode="widthFix" style="width:250rpx"></image>
+      </view>
+
+      <view class="first_coin" animation='{{animation}}' bindtap="firstCoin" hidden="{{firstCoinHide}}">
+        <image class="coin_1" src="../../image/coin.png" mode="widthFix" style="width:60rpx"></image>
+        <text class="first_coin_num">{{firstCoin}}</text>
+      </view>
+
+      <view class="second_coin" animation='{{animation}}' bindtap="secondCoin" hidden="{{secondCoinHide}}">
+        <image class="coin_2" src="../../image/coin.png" mode="widthFix" style="width:60rpx"></image>
+        <text class="second_coin_num">{{secondCoin}}</text>
+      </view>
     </view>
 
-    <view class="first_coin" animation='{{animation}}' bindtap="firstCoin" hidden="{{firstCoinHide}}">
-      <image class="coin_1" src="../../image/coin.png" mode="widthFix" style="width:60rpx"></image>
-      <text class="first_coin_num">{{firstCoin}}</text>
+
+    <text class="tip_1">同步步数到爱计步</text>
+    <text class="tip_2">同步成功后，步数更精准</text>
+
+    <button class="sync_bt" open-type="launchApp" app-parameter="{{monthStep}}" binderror="launchAppError">
+      <image src="../../image/syncNow.png" mode="widthFix" style="width:450rpx" ></image>
+    </button>
+
+    <view class="function_view" style="height:50rpx;">
+      <view class="sync_method_view" bindtap="methodClick">
+        <image class="sync_method_iv" src="../../image/syncMethod.png" mode="widthFix" style="width:38rpx"></image>
+        <text class="sync_method_tv">同步方法</text>
+      </view>
+
+      <view class="contact_container">
+        <image class="contact_iv" src="../../image/contact.png" mode="widthFix" style="width:38rpx"></image>
+        <button class="contact_view" open-type="contact">
+          <text class="contact_tv">联系客服</text>
+        </button>
+      </view>
+
     </view>
 
-    <view class="second_coin" animation='{{animation}}' bindtap="secondCoin" hidden="{{secondCoinHide}}">
-      <image class="coin_2" src="../../image/coin.png" mode="widthFix" style="width:60rpx"></image>
-      <text class="second_coin_num">{{secondCoin}}</text>
+    <view class="loading_view">
+      <loading hidden="{{hidden}}">
+        同步微信步数中
+      </loading>
     </view>
+
+    <view class="adContainer">
+      <ad unit-id="adunit-c9c625105e59c370" ad-intervals="300" bindload="adLoad" binderror="adError" bindclose="adClose"></ad>
+    </view>
+
+    <popup id='popup' bind:close="_close" style="height:100%"></popup>
+    <coinDialog id="coinDialog" bind:doubleCoin="doubleCoin" bind:clickOk="clickOk" style="height:100%"></coinDialog>
+
   </view>
 
-
-  <text class="tip_1">同步步数到爱计步</text>
-  <text class="tip_2">同步成功后，步数更精准</text>
-
-  <image class="sync_bt" src="../../image/syncNow.png" mode="widthFix" style="width:450rpx" open-type="launchApp" app-parameter="{{monthStep}}" binderror="launchAppError"></image>
-
-  <view class="function_view">
-    <view class="sync_method_view" bindtap="methodClick">
-      <image class="sync_method_iv" src="../../image/syncMethod.png" mode="widthFix" style="width:38rpx"></image>
-      <text class="sync_method_tv">同步方法</text>
-    </view>
-
-    <view class="contact_container">
-      <image class="contact_iv" src="../../image/contact.png" mode="widthFix" style="width:38rpx"></image>
-      <button class="contact_view" open-type="contact">
-        <text class="contact_tv">联系客服</text>
-      </button>
-    </view>
-
-  </view>
-
-  <view class="loading_view">
-    <loading hidden="{{hidden}}">
-      同步微信步数中
-    </loading>
-  </view>
-
-  <view class="adContainer">
-    <ad unit-id="adunit-c9c625105e59c370" ad-intervals="300" bindload="adLoad" binderror="adError" bindclose="adClose"></ad>
-  </view>
-
-  <popup id='popup' bind:close="_close" style="height:100%"></popup>
-  <coinDialog id="coinDialog" bind:doubleCoin="doubleCoin" style="height:100%"></coinDialog>
-
-</view>
+</scroll-view>

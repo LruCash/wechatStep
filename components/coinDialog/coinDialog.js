@@ -7,7 +7,8 @@ Component({
   },
 
   data: {
-    flag:true
+    flag:true,
+    coinNum:0
   },
   methods: {
     doubleCoin(){
@@ -16,11 +17,19 @@ Component({
       })
       this.triggerEvent("doubleCoin");
     },
+
+    clickOk(){
+      this.setData({
+        flag: !this.data.flag
+      })
+      this.triggerEvent("clickOk");
+    },
     
     //显示弹窗
-    showDialog(){
+    showDialog(coin){
       this.setData({
-        flag:!this.data.flag
+        flag:!this.data.flag,
+        coinNum:coin
       })
     },
 

@@ -14,7 +14,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 80%;
+  width: 85%;
   border-radius: 15rpx;
   box-sizing: bordre-box;
   transform: translate(-50%, -50%);
@@ -28,7 +28,7 @@
 .header_iv {
   z-index: 2;
   position: absolute;
-  top: 25%;
+  top: 18%;
 }
 
 .coin_tv {
@@ -42,12 +42,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 62rpx;
-  border-radius: 31rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
   background: #fb4a42;
   font-size: 26rpx;
   color: white;
-  width: 280rpx;
+  width: 320rpx;
 }
 
 .sure_tv {
@@ -55,13 +55,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 62rpx;
+  height: 70rpx;
   font-size: 26rpx;
   margin-top: 30rpx;
   background: white;
   color: #9E9E9E;
-  width: 280rpx;
+  width: 320rpx;
   border: solid 2rpx #9E9E9E;
-  border-radius: 31rpx;
+  border-radius: 35rpx;
   margin-bottom: 50rpx;
+}
+
+.banner_ad{
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
 }

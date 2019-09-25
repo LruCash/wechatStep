@@ -83,11 +83,21 @@
 
 .sync_bt {
   margin-top: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   align-self: center;
+  background: transparent;
+}
+
+.sync_bt::after{
+  border: none;
 }
 
 .function_view {
   width: 60%;
+  margin-top: 6rpx;
+  margin-bottom: 450rpx;
   display: flex;
   flex-direction: row;
   align-self: center;
@@ -103,6 +113,9 @@
 .contact_view {
   padding: 0rpx;
   margin-left: 0rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: transparent;
 }
 

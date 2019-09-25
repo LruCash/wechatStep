@@ -1,8 +1,10 @@
 <view class="rootContainer" hidden="{{flag}}">
   <image class="header_iv" src="../../image/light_coin.png" mode="widthFix" style="width:200rpx"></image>
   <view class="popContainer">
-      <text class="coin_tv">恭喜获得30金币</text>
-      <view class="double_tv" bindtap="doubleCoin">金币翻倍x2</view>
-      <view class="sure_tv" bindtap="hideDialog">好的</view>
+    <text class="coin_tv">恭喜获得{{coinNum}}金币</text>
+    <view class="double_tv" bindtap="doubleCoin">金币翻倍x2</view>
+    <view class="sure_tv" bindtap="clickOk">好的</view>
+    <ad class="banner_ad" unit-id="adunit-fa57a8ebd94a4f0b"></ad>
   </view>
+
 </view>

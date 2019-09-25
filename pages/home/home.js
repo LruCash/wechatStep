@@ -7,6 +7,7 @@ let interstitialAd = null
 let videoAd = null
 let clickCoinIndex = -1
 let totalGetCoin = 0
+let version = 0
 
 Page({
 
@@ -23,7 +24,12 @@ Page({
     secondCoinHide:true,
   },
 
-  onLoad: function () { 
+  onLoad: function (options) {
+    //app版本号参数
+    if (options.version){
+      version = options.version;
+    }
+
     if (wx.createInterstitialAd) {
       interstitialAd = wx.createInterstitialAd({
         adUnitId: 'adunit-d889b09e5355220d'
@@ -57,11 +63,13 @@ Page({
             })
             totalGetCoin += this.data.secondCoin*2;
           }
-          this.coinDoubleSucc();
+          this.coinDoubleSucc('金币翻倍成功');
           //返回json更新
           var obj = JSON.parse(this.data.monthStep)
           obj['stepCoin'] = totalGetCoin;
-          this.data.monthStep = JSON.stringify(obj);
+          this.setData({
+            monthStep: JSON.stringify(obj)
+          })
         }
        })
     }
@@ -98,11 +106,10 @@ Page({
   },
 
   read_step() {
-    this.canAwardCoin();
-    // this.setData({
-    //   hidden: false,
-    // })
-    // this.login();
+    this.setData({
+      hidden: false,
+    })
+    this.login();
   },
 
   login: function(event) {
@@ -228,7 +235,7 @@ Page({
     console.log(e.detail.errMsg);
     wx.showToast({
       title: '同步失败',
-      icon: 'fail',
+      icon: 'none',
       duration: 1000
     })
   },
@@ -256,12 +263,12 @@ Page({
    */
   firstCoin(){
     this.clickCoinIndex = 1;
-    this.coinDialog.showDialog();
+    this.coinDialog.showDialog(this.data.firstCoin);
   },
 
   secondCoin(){
     this.clickCoinIndex = 2;
-    this.coinDialog.hideDialog();
+    this.coinDialog.showDialog(this.data.secondCoin);
   },
 
 
@@ -290,6 +297,9 @@ Page({
     this.popup.hidePopup();
   },
 
+  /**
+   * dialog点击翻倍
+   */
   doubleCoin(){
     if (videoAd) {
       videoAd.show().catch(() => {
@@ -301,6 +311,30 @@ Page({
           })
       })
     }
+  },
+
+  /**
+   * 金币dialog点击好的
+   */
+  clickOk(){
+    if (this.clickCoinIndex == 1) {
+      this.setData({
+        firstCoinHide: true,
+      })
+      totalGetCoin += this.data.firstCoin;
+    } else if (this.clickCoinIndex == 2) {
+      this.setData({
+        secondCoinHide: true,
+      })
+      totalGetCoin += this.data.secondCoin;
+    }
+    this.coinDoubleSucc('金币领取成功');
+    //返回json更新
+    var obj = JSON.parse(this.data.monthStep)
+    obj['stepCoin'] = totalGetCoin;
+    this.setData({
+      monthStep : JSON.stringify(obj)
+    })
   },
 
   /**
@@ -323,23 +357,24 @@ Page({
    * 每天只有一次金币奖励
    */
   canAwardCoin(){
-    var todayDate = util.formatTimeYMD(new Date());
-    console.log(wx.getStorageSync('todayDate'));
-    console.log(wx.getStorageSync('todayDate') != todayDate);
-    if (wx.getStorageSync('todayDate') != todayDate){
-      wx.setStorageSync('todayDate', todayDate);
-      return true;
-    }else{
-      return false;
-    }
+    // var todayDate = util.formatTimeYMD(new Date());
+    // console.log(wx.getStorageSync('todayDate'));
+    // console.log(wx.getStorageSync('todayDate') != todayDate);
+    // if (wx.getStorageSync('todayDate') != todayDate){
+    //   wx.setStorageSync('todayDate', todayDate);
+    //   return true;
+    // }else{
+    //   return false;
+    // }
+    return true;
   },
 
   /**
    * 金币翻倍成功toast
    */
-  coinDoubleSucc(){
+  coinDoubleSucc(msg){
     wx.showToast({
-      title: '金币翻倍成功',
+      title: msg,
       icon: 'succ',
       duration: 1000
     })
@@ -347,13 +382,10 @@ Page({
 
   //底部广告位
   adLoad() {
-    console.log('Banner 广告加载成功')
   },
   adError(err) {
-    console.log('Banner 广告加载失败', err)
   },
   adClose() {
-    console.log('Banner 广告关闭')
   }
 
 })
