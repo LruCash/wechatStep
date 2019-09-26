@@ -56,7 +56,7 @@
 
     <popup id='popup' bind:close="_close" style="height:100%"></popup>
     <coinDialog id="coinDialog" bind:doubleCoin="doubleCoin" bind:clickOk="clickOk" style="height:100%"></coinDialog>
-
+    <dialog id='dialog' bind:clickSure="clickSure" style="height:100%"></dialog>
   </view>
 
 </scroll-view>

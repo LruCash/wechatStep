@@ -1,0 +1,10 @@
+<view class="rootContainer" hidden="{{flag}}">
+  <view class="popContainer">
+      <text class="title">提示</text>
+      <view class="divider_top"></view>
+      <text class="content">{{msg}}</text>
+      <view class="divider_botom"></view>
+      <text class="sure_bt" bindtap="clickSure">确定</text>
+  </view>
+
+</view>

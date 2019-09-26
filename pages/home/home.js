@@ -79,6 +79,7 @@ Page({
     //获得popup组件
     this.popup = this.selectComponent("#popup");
     this.coinDialog = this.selectComponent("#coinDialog");
+    this.dialog = this.selectComponent("#dialog")
   },
 
   createAnim() {
@@ -103,6 +104,11 @@ Page({
         animation: animation.export()
       })
     }.bind(this), 2000)
+  },
+
+  //版本号过低时提示升级
+  showVersionDialog(){
+    this.dialog.showDialog('爱计步app升级到最新版本可领取额外微信步数金币奖励');
   },
 
   read_step() {
