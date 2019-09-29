@@ -418,7 +418,6 @@ Page({
    * 每天只有一次金币奖励
    */
   canAwardCoin(){
-    return true;
     var todayDate = util.formatTimeYMD(new Date());
     console.log(wx.getStorageSync('todayDate'));
     if (wx.getStorageSync('todayDate') != todayDate){

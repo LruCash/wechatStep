@@ -6,34 +6,32 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.popContainer {
-  position: absolute;
-  left: 50%;
-  top: 50%;
+.content {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header_iv{
+  z-index: 2;
+}
+.popContainer{
   width: 88%;
-  border-radius: 15rpx;
-  box-sizing: bordre-box;
-  transform: translate(-50%, -50%);
-  overflow: hidden;
+  margin-top:-50rpx;
   background: white;
+  border-radius: 15rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.header_iv {
-  z-index: 2;
-  position: absolute;
-  left: 50%;
-  top:24%;
-  transform: translate(-50%, -50%);
-  padding-bottom: 100rpx;
-}
 
 .coin_tv {
   font-size: 30rpx;
@@ -74,3 +72,5 @@
   border-bottom-left-radius: 15rpx;
   border-bottom-right-radius: 15rpx;
 }
+
+

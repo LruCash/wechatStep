@@ -140,3 +140,9 @@
   bottom: 0rpx;
   width: 100%;
 }
+
+.coinDialog{
+  position: fixed;
+  width: 70%;
+  height: 100%;
+}
