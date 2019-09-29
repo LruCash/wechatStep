@@ -97,7 +97,6 @@
 .function_view {
   width: 60%;
   margin-top: 6rpx;
-  margin-bottom: 450rpx;
   display: flex;
   flex-direction: row;
   align-self: center;

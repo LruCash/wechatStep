@@ -8,6 +8,7 @@ let videoAd = null
 let clickCoinIndex = -1
 let totalGetCoin = 0
 let version = 0
+let hasClickSync = false
 
 Page({
 
@@ -20,6 +21,7 @@ Page({
     firstCoin:10,
     secondCoin:20,
     animation:'',
+    animationMiddleHeaderItem:'',
     firstCoinHide:true,
     secondCoinHide:true,
   },
@@ -63,6 +65,7 @@ Page({
             })
             totalGetCoin += this.data.secondCoin*2;
           }
+          console.log("coinDouble_",totalGetCoin);
           this.coinDoubleSucc('金币翻倍成功');
           //返回json更新
           var obj = JSON.parse(this.data.monthStep)
@@ -79,9 +82,14 @@ Page({
     //获得popup组件
     this.popup = this.selectComponent("#popup");
     this.coinDialog = this.selectComponent("#coinDialog");
-    this.dialog = this.selectComponent("#dialog")
+    this.dialog = this.selectComponent("#dialog");
+
+    this.createScaleAnim();
   },
 
+  /**
+   * 金币跳动动画
+   */
   createAnim() {
     var animation = wx.createAnimation({
       duration: 2000,
@@ -106,12 +114,49 @@ Page({
     }.bind(this), 2000)
   },
 
+  /**
+   * 读取微信步数呼吸动画
+   */
+  createScaleAnim(){
+
+    var circleCount = 0;
+    // 心跳的外框动画  
+    this.animationMiddleHeaderItem = wx.createAnimation({
+      duration: 1000,    // 以毫秒为单位  
+      timingFunction: 'linear',
+      delay: 100,
+      transformOrigin: '50% 50%',
+      success: function (res) {
+      }
+    });
+    setInterval(function () {
+      if(hasClickSync){
+        return;
+      }
+      if (circleCount % 2 == 0) {
+        this.animationMiddleHeaderItem.scale(1.15).step();
+      } else {
+        this.animationMiddleHeaderItem.scale(1.0).step();
+      }
+
+      this.setData({
+        animationMiddleHeaderItem: this.animationMiddleHeaderItem.export()  //输出动画
+      });
+
+      circleCount++;
+      if (circleCount == 1000) {
+        circleCount = 0;
+      }
+    }.bind(this), 1000);
+  },
+
   //版本号过低时提示升级
   showVersionDialog(){
     this.dialog.showDialog('爱计步app升级到最新版本可领取额外微信步数金币奖励');
   },
 
   read_step() {
+    hasClickSync = true;
     this.setData({
       hidden: false,
     })
@@ -239,11 +284,20 @@ Page({
 
   launchAppError(e) {
     console.log(e.detail.errMsg);
-    wx.showToast({
-      title: '同步失败',
-      icon: 'none',
-      duration: 1000
-    })
+    if(!hasClickSync){
+      wx.showToast({
+        title: '同步失败，请先读取微信步数',
+        icon: 'none',
+        duration: 1000
+      })
+    }else{
+      wx.showToast({
+        title: '同步失败，需要从爱计步打开小程序同步',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    
   },
 
   //同步步数数字动画
@@ -334,6 +388,7 @@ Page({
       })
       totalGetCoin += this.data.secondCoin;
     }
+    console.log("coinOk_", totalGetCoin);
     this.coinDoubleSucc('金币领取成功');
     //返回json更新
     var obj = JSON.parse(this.data.monthStep)
@@ -348,8 +403,8 @@ Page({
    */
   setRandomCoin(){
     if(this.canAwardCoin()){
-      let coinFirst = Math.floor(Math.random() * 10 + 30);
-      let coinSecond = Math.floor(Math.random() * 10 + 30)
+      let coinFirst = Math.floor(Math.random() * 10 + 40);
+      let coinSecond = Math.floor(Math.random() * 10 + 40)
       this.setData({
         firstCoinHide: false,
         secondCoinHide: false,
@@ -363,16 +418,15 @@ Page({
    * 每天只有一次金币奖励
    */
   canAwardCoin(){
-    // var todayDate = util.formatTimeYMD(new Date());
-    // console.log(wx.getStorageSync('todayDate'));
-    // console.log(wx.getStorageSync('todayDate') != todayDate);
-    // if (wx.getStorageSync('todayDate') != todayDate){
-    //   wx.setStorageSync('todayDate', todayDate);
-    //   return true;
-    // }else{
-    //   return false;
-    // }
     return true;
+    var todayDate = util.formatTimeYMD(new Date());
+    console.log(wx.getStorageSync('todayDate'));
+    if (wx.getStorageSync('todayDate') != todayDate){
+      wx.setStorageSync('todayDate', todayDate);
+      return true;
+    }else{
+      return false;
+    }
   },
 
   /**

@@ -1,5 +1,3 @@
-<scroll-view scroll-y style="height: 100%;">
-
   <view class="root_view">
     <view class="header_view">
 
@@ -7,7 +5,8 @@
         <image class="circle_iv" src="../../image/circle.png" mode="widthFix" style="width:450rpx"></image>
         <text class="title_step">微信步数</text>
         <text class="step_count">{{step}}</text>
-        <image class="read_bt" bindtap="read_step" src="../../image/readStep.png" mode="widthFix" style="width:250rpx"></image>
+        <image class="read_bt" bindtap="read_step" src="../../image/readStep.png" mode="widthFix" 
+        animation='{{animationMiddleHeaderItem}}' style="width:250rpx"></image>
       </view>
 
       <view class="first_coin" animation='{{animation}}' bindtap="firstCoin" hidden="{{firstCoinHide}}">
@@ -26,7 +25,7 @@
     <text class="tip_2">同步成功后，步数更精准</text>
 
     <button class="sync_bt" open-type="launchApp" app-parameter="{{monthStep}}" binderror="launchAppError">
-      <image src="../../image/syncNow.png" mode="widthFix" style="width:450rpx" ></image>
+      <image src="../../image/syncNow.png" mode="widthFix" style="width:450rpx"></image>
     </button>
 
     <view class="function_view" style="height:50rpx;">
@@ -58,5 +57,3 @@
     <coinDialog id="coinDialog" bind:doubleCoin="doubleCoin" bind:clickOk="clickOk" style="height:100%"></coinDialog>
     <dialog id='dialog' bind:clickSure="clickSure" style="height:100%"></dialog>
   </view>
-
-</scroll-view>
