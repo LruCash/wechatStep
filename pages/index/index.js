@@ -69,6 +69,9 @@ Page({
           this.coinDoubleSucc('金币翻倍成功');
           //返回json更新
           var obj = JSON.parse(this.data.monthStep)
+          if(totalGetCoin>200){
+              totalGetCoin = 200;
+          }
           obj['stepCoin'] = totalGetCoin;
           this.setData({
             monthStep: JSON.stringify(obj)
@@ -85,6 +88,9 @@ Page({
     this.dialog = this.selectComponent("#dialog");
 
     this.createScaleAnim();
+    if(version < 31500){
+        this.showVersionDialog();
+    }
   },
 
   /**
@@ -392,6 +398,9 @@ Page({
     this.coinDoubleSucc('金币领取成功');
     //返回json更新
     var obj = JSON.parse(this.data.monthStep)
+    if (totalGetCoin > 200) {
+      totalGetCoin = 200;
+    }
     obj['stepCoin'] = totalGetCoin;
     this.setData({
       monthStep : JSON.stringify(obj)

@@ -5,8 +5,7 @@
         <image class="circle_iv" src="../../image/circle.png" mode="widthFix" style="width:450rpx"></image>
         <text class="title_step">微信步数</text>
         <text class="step_count">{{step}}</text>
-        <image class="read_bt" bindtap="read_step" src="../../image/readStep.png" mode="widthFix" 
-        animation='{{animationMiddleHeaderItem}}' style="width:250rpx"></image>
+        <image class="read_bt" bindtap="read_step" src="../../image/readStep.png" mode="widthFix" animation='{{animationMiddleHeaderItem}}' style="width:250rpx"></image>
       </view>
 
       <view class="first_coin" animation='{{animation}}' bindtap="firstCoin" hidden="{{firstCoinHide}}">
