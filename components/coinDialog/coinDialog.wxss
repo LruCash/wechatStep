@@ -35,7 +35,7 @@
 
 .coin_tv {
   font-size: 30rpx;
-  margin-top: 80rpx;
+  margin-top: 100rpx;
 }
 
 .double_tv {
@@ -59,13 +59,13 @@
   align-items: center;
   height: 70rpx;
   font-size: 26rpx;
-  margin-top: 30rpx;
-  background: white;
-  color: #9e9e9e;
+  margin-top: 80rpx;
+  background: #FB4A42;
+  color: white;
   width: 360rpx;
   border: solid 2rpx #9e9e9e;
   border-radius: 35rpx;
-  margin-bottom: 50rpx;
+  margin-bottom: 80rpx;
 }
 
 .banner_ad {
