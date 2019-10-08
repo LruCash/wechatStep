@@ -138,9 +138,12 @@
 .adContainer {
   margin-top: 40rpx;
   margin-bottom: 100rpx;
-  border-radius: 35px;
   width: 92%;
   align-self: center;
+}
+
+.ad_banner{
+  border-radius: 18rpx;
 }
 
 .coinDialog{

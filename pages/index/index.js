@@ -3,8 +3,6 @@ var util = require('../../utils/util.js');
 const app = getApp()
 //插屏广告
 let interstitialAd = null
-//激励视频
-let videoAd = null
 let clickCoinIndex = -1
 let totalGetCoin = 0
 let version = 0
@@ -39,45 +37,6 @@ Page({
       interstitialAd.onLoad(() => { })
       interstitialAd.onError((err) => { })
       interstitialAd.onClose(() => { })
-    }
-
-    if (wx.createRewardedVideoAd) {
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-c8e5a3ec390a889f'
-      })
-      videoAd.onLoad(() => {
-
-       })
-      videoAd.onError((err) => {
-          
-       })
-
-      videoAd.onClose((res) => {
-        if (res.isEnded){
-          if (this.clickCoinIndex == 1) {
-            this.setData({
-              firstCoinHide: true,
-            })
-            totalGetCoin += this.data.firstCoin*2;
-          } else if (this.clickCoinIndex == 2) {
-            this.setData({
-              secondCoinHide: true,
-            })
-            totalGetCoin += this.data.secondCoin*2;
-          }
-          console.log("coinDouble_",totalGetCoin);
-          this.coinDoubleSucc('金币翻倍成功');
-          //返回json更新
-          var obj = JSON.parse(this.data.monthStep)
-          if(totalGetCoin>200){
-              totalGetCoin = 200;
-          }
-          obj['stepCoin'] = totalGetCoin;
-          this.setData({
-            monthStep: JSON.stringify(obj)
-          })
-        }
-       })
     }
   },
 
@@ -367,16 +326,7 @@ Page({
    * dialog点击翻倍
    */
   doubleCoin(){
-    if (videoAd) {
-      videoAd.show().catch(() => {
-        // 失败重试
-        videoAd.load()
-          .then(() => videoAd.show())
-          .catch(err => {
-            console.log('激励视频 广告显示失败')
-          })
-      })
-    }
+    
   },
 
   /**
@@ -404,7 +354,13 @@ Page({
     obj['stepCoin'] = totalGetCoin;
     this.setData({
       monthStep : JSON.stringify(obj)
-    })
+    });
+    //点击好的弹插屏广告
+    if (interstitialAd) {
+      interstitialAd.show().catch((err) => {
+        console.error(err)
+      })
+    }
   },
 
   /**
