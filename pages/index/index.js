@@ -3,6 +3,8 @@ var util = require('../../utils/util.js');
 const app = getApp()
 //插屏广告
 let interstitialAd = null
+//dialog点击好的插屏
+let interstitialDialogAd = null
 let clickCoinIndex = -1
 let totalGetCoin = 0
 let version = 0
@@ -34,9 +36,10 @@ Page({
       interstitialAd = wx.createInterstitialAd({
         adUnitId: 'adunit-d889b09e5355220d'
       })
-      interstitialAd.onLoad(() => { })
-      interstitialAd.onError((err) => { })
-      interstitialAd.onClose(() => { })
+
+      interstitialDialogAd = wx.createInterstitialAd({
+        adUnitId: 'adunit-fb6406f45ba50e77'
+      })
     }
   },
 
@@ -356,8 +359,8 @@ Page({
       monthStep : JSON.stringify(obj)
     });
     //点击好的弹插屏广告
-    if (interstitialAd) {
-      interstitialAd.show().catch((err) => {
+    if (interstitialDialogAd) {
+      interstitialDialogAd.show().catch((err) => {
         console.error(err)
       })
     }
