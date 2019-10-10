@@ -49,10 +49,12 @@ Page({
     this.coinDialog = this.selectComponent("#coinDialog");
     this.dialog = this.selectComponent("#dialog");
 
-    this.createScaleAnim();
-    if(version < 31500){
+    //this.createScaleAnim();
+    if (version < 31500 && this.canAwardCoin()){
         this.showVersionDialog();
     }
+
+    this.read_step();
   },
 
   /**
