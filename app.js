@@ -10,6 +10,9 @@ App({
     })
   },
 
+  onShow: function(){
+  },
+
 
   globalData: {
     loginCode:null

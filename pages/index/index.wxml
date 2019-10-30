@@ -49,7 +49,7 @@
     </view>
 
     <view class="adContainer">
-      <ad class="ad_banner" unit-id="adunit-c9c625105e59c370" ad-intervals="300" bindload="adLoad" binderror="adError" bindclose="adClose"></ad>
+      <ad class="ad_banner" unit-id="{{bannerAdUnit}}" ad-intervals="300" bindload="adLoad" binderror="adError" bindclose="adClose"></ad>
     </view>
 
     <popup id='popup' bind:close="_close" style="height:100%"></popup>

@@ -1,10 +1,10 @@
 import WxCountUp from '../../plugins/wx-countup/WxCountUp.js'
 var util = require('../../utils/util.js');
 const app = getApp()
-//插屏广告
+//爱计步插屏广告
 let interstitialAd = null
-//dialog点击好的插屏
-let interstitialDialogAd = null
+//步步有宝插屏广告
+let stepGoldInterstitialAd = null
 let clickCoinIndex = -1
 let totalGetCoin = 0
 let version = 0
@@ -24,6 +24,7 @@ Page({
     animationMiddleHeaderItem:'',
     firstCoinHide:true,
     secondCoinHide:true,
+    bannerAdUnit:'adunit-4d1449f4192e7874',
   },
 
   onLoad: function (options) {
@@ -31,16 +32,12 @@ Page({
     if (options.version){
       version = options.version;
     }
+    this.classifyAdUnit();
+  },
 
-    if (wx.createInterstitialAd) {
-      interstitialAd = wx.createInterstitialAd({
-        adUnitId: 'adunit-d889b09e5355220d'
-      })
-
-      interstitialDialogAd = wx.createInterstitialAd({
-        adUnitId: 'adunit-fb6406f45ba50e77'
-      })
-    }
+  //页面出现在前台时执行
+  onShow:function(){
+    totalGetCoin = 0;
   },
 
   onReady: function () {
@@ -55,6 +52,31 @@ Page({
     }
 
     this.read_step();
+  },
+
+  classifyAdUnit(version){
+    //version==31500创建步步有宝广告位，否则创建爱计步广告位
+    if (version == 31500) {
+      if (wx.createInterstitialAd) {
+        stepGoldInterstitialAd = wx.createInterstitialAd({
+          adUnitId: 'adunit-3b3709cfc8330e4e'
+        })
+      }
+      //banner广告位
+      this.setData({
+        bannerAdUnit:'adunit-4d1449f4192e7874'
+      })
+    } else {
+      if (wx.createInterstitialAd) {
+        interstitialAd = wx.createInterstitialAd({
+          adUnitId: 'adunit-d889b09e5355220d'
+        })
+      }
+      //banner广告位
+      this.setData({
+        bannerAdUnit: 'adunit-c9c625105e59c370'
+      })
+    }
   },
 
   /**
@@ -361,11 +383,24 @@ Page({
       monthStep : JSON.stringify(obj)
     });
     //点击好的弹插屏广告
-    if (interstitialDialogAd) {
-      interstitialDialogAd.show().catch((err) => {
-        console.error(err)
-      })
+    this.showInterstitialAd();
+  },
+
+  showInterstitialAd(){
+    if(version == 31500){
+      if (stepGoldInterstitialAd) {
+        stepGoldInterstitialAd.show().catch((err) => {
+          console.error(err)
+        })
+      }
+    }else{
+      if (interstitialAd) {
+        interstitialAd.show().catch((err) => {
+          console.error(err)
+        })
+      }
     }
+    
   },
 
   /**
@@ -373,8 +408,8 @@ Page({
    */
   setRandomCoin(){
     if(this.canAwardCoin()){
-      let coinFirst = Math.floor(Math.random() * 10 + 40);
-      let coinSecond = Math.floor(Math.random() * 10 + 40)
+      let coinFirst = Math.floor(Math.random() * 10 + 30);
+      let coinSecond = Math.floor(Math.random() * 10 + 30)
       this.setData({
         firstCoinHide: false,
         secondCoinHide: false,
